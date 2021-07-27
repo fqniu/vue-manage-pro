@@ -70,6 +70,16 @@ export default {
         },
         {
           icon: "el-icon-s-opportunity",
+          index: "complexTable",
+          title: "复杂表格",
+        },
+        {
+          icon: "el-icon-s-opportunity",
+          index: "complexTable2",
+          title: "复杂表格2",
+        },
+        {
+          icon: "el-icon-s-opportunity",
           index: "search",
           title: "简单查询",
         },
@@ -158,7 +168,7 @@ export default {
   width: 0;
 }
 .sidebar-el-menu:not(.el-menu--collapse) {
-	width: 220px;
+  width: 220px;
 }
 .sidebar > ul {
   height: 100%;

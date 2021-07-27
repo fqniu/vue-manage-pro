@@ -26,6 +26,16 @@ const routes = [
         meta: { title: '基础表格' }
       },
       {
+        path: '/complexTable',
+        component: () => import('@/views/complexTable/ComplexTable.vue'),
+        meta: { title: '复杂表格' }
+      },
+			{
+        path: '/complexTable2',
+        component: () => import('@/views/complexTable/ComplexTable2.vue'),
+        meta: { title: '复杂表格2' }
+      },
+      {
         path: '/search',
         component: () => import('@/views/search/Search.vue'),
         meta: { title: '简单查询' }
