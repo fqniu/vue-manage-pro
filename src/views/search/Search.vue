@@ -27,7 +27,7 @@
       </div>
       <div class="xpl_container_btn">
         <el-button type="primary" @click="query">查询</el-button
-        ><el-button @click="reset">重置</el-button>
+        ><el-button @click="reset">重置按钮</el-button>
       </div>
     </div>
 
