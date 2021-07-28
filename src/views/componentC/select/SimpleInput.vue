@@ -18,8 +18,8 @@
         :type="inputType"
         v-model="value"
         placeholder="请输入"
-        @change="inputChange"
         :disabled="isDisabled"
+        v-debounce="{ handler: inputChange, event: 'input', wait: 5000 }" 
       ></el-input>
     </div>
     <div v-show="isShowTip" class="xSelect_tip">{{ defaultTip }}</div>
@@ -92,6 +92,9 @@ export default {
     inputChange() {
       this.$emit("inputValue", this.value);
     },
+    handleSearch(value){
+      console.log(value);
+    }
   },
 };
 </script>

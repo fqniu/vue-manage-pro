@@ -351,6 +351,7 @@ export function compressor(file, drew, maxWidth = 750, quality = 0.6) {
  * @return {*}
  */
 export function debounce(method, wait, immediate) {
+  console.log(method, wait, immediate);
 	let timeout
 	return function (...args) {
 		let context = this

@@ -35,7 +35,7 @@
       </div>
     </div>
     <div class="resetBtn">
-      <el-bitton @click="reast">重置</el-bitton>
+      <el-button @click="reast">重置</el-button>
     </div>
   </div>
 </template>
