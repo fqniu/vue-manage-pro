@@ -1,0 +1,48 @@
+// 布局容器
+.xSelect_container {
+  position: relative;
+  width: 100%;
+  clear: both;
+  .xSelect_label {
+    float: left;
+    font-size: 14px;
+    height: 32px;
+    line-height: 32px;
+    text-align: right;
+  }
+  .xSelect_wrap {
+    float: left;
+  }
+}
+//是否检验
+.xSelect_check {
+  position: relative;
+  &:before {
+    position: absolute;
+    top: -9px;
+    left: -8px;
+    content: "*";
+    color: #f56c6c;
+  }
+}
+::v-deep .el-input__inner {
+  height: 32px;
+  font-size: 12px;
+}
+.xSelect_tip {
+  position: absolute;
+  top: 35px;
+  left: 94px;
+  color: #f56c6c;
+  font-size: 12px;
+}
+.label_title {
+  position: relative;
+  .label_icon {
+    // position: absolute;
+    right: 3px;
+    top: 3px;
+    font-size: 14px;
+    z-index: 11;
+  }
+}
