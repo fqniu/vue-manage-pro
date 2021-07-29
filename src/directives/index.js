@@ -47,6 +47,7 @@ const debounce = {
     if (!binding.value.handler || typeof binding.value.handler !== 'function') {
       return
     }
+    console.log(el, binding);
     const handler = binding.value.handler
     const wait = binding.value.await || 1000
     const immediate = !!binding.value.immediate
