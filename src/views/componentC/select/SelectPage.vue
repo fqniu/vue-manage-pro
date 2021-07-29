@@ -33,9 +33,18 @@
           @changeByLetterFAmount="changeByLetterFAmount"
         />
       </div>
+        <div class="odd_number">
+          <TimeInput
+            :defaultConfig="FinancingStart"
+            @acceptFinancingData="acceptFinancingStartData"
+            :commomClear="byLetterClearFStart"
+            titleType="byLetterClearFStart"
+            @changeByLetterClearFStart="changeByLetterClearFStart"
+          />
+        </div>
     </div>
     <div class="resetBtn">
-      <el-bitton @click="reast">重置</el-bitton>
+      <el-button @click="reast">重置</el-button>
     </div>
   </div>
 </template>
@@ -44,12 +53,14 @@
 import XSelect from "./Select";
 import SimpleInput from "./SimpleInput.vue";
 import DoubleInput from "./DoubleInput.vue";
+import TimeInput from "./TimeInput.vue";
 export default {
   name: "SelectPage",
   components: {
     XSelect,
     SimpleInput,
 		DoubleInput,
+		TimeInput,
   },
   data() {
     return {
@@ -77,6 +88,11 @@ export default {
         title: "融资金额：",
       },
 			byLetterFAmount:false,
+      FinancingStart: {
+        title: "融资起始日：",
+        placeholder: "请选择",
+      },
+			byLetterClearFStart:false,
     };
   },
   methods: {
@@ -107,10 +123,18 @@ export default {
 		changeByLetterFAmount(flag){
 			this.byLetterFAmount = flag;
 		},
+    // 融资起始日
+    acceptFinancingStartData(arr) {
+      console.log('融资起始日', arr);
+    },
+    changeByLetterClearFStart(flag){
+      this.byLetterClearFStart = flag;
+    },
     // 重置
     reast() {
       this.singleBApplyApplyNnumber = true;
 			this.byLetterFAmount = true;
+			this.byLetterClearFStart = true;
     },
   },
 };

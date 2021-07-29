@@ -7,7 +7,7 @@ import {
   Step, Steps, Checkbox, CheckboxGroup, Upload,
   Timeline, TimelineItem,
   // 新 加的
-  Dropdown, DropdownMenu,DropdownItem,Backtop,Progress,Icon, Table, TableColumn,
+  Dropdown, DropdownMenu,DropdownItem,Backtop,Progress,Icon, Table, TableColumn,DatePicker
 } from 'element-ui'
 
 Vue.use(Dropdown)
@@ -16,6 +16,7 @@ Vue.use(DropdownItem)
 Vue.use(Backtop)
 Vue.use(Progress)
 Vue.use(Icon)
+Vue.use(DatePicker)
 
 Vue.use(Button)
 Vue.use(Form)
