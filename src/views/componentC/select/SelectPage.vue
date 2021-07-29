@@ -55,7 +55,6 @@
         />
       </div>
     </div>
-
     <div class="resetBtn">
       <el-button @click="reast">重置</el-button>
     </div>

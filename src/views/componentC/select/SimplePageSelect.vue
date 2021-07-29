@@ -1,3 +1,4 @@
+<!-- 一个简单的 带有分页的下拉菜单组件 -->
 <template>
   <div class="xSelect_container">
     <div
@@ -9,13 +10,12 @@
       <div class="select_wrap" @click="selectClick">
         <div
           class="current_value defaultC"
-          v-if="selectDefaultVal == '请选择'"
-          :class="isDisabled ? 'notClick' : ''"
+          v-if="selectionBoxDefaultValue == '请选择'"
         >
-          {{ selectDefaultVal }}
+          {{ selectionBoxDefaultValue }}
         </div>
         <div class="current_value activeC" v-else>
-          {{ selectDefaultVal }}
+          {{ selectionBoxDefaultValue }}
         </div>
         <div ref="triangle" class="triangle_container">
           <i class="el-icon-arrow-down"></i>
@@ -25,20 +25,9 @@
       <div
         class="option_wrapper"
         ref="optionwrapper"
-        style="display: none; zindex: 1995; max-height:366px"
+        style="display: none; zindex: 1995"
       >
-        <div style="margin-bottom: 6px; margin-left: 10px">
-          <input
-            type="text"
-            placeholder="请输入"
-            style="margin-right: 16px"
-            v-model="search_code"
-            class="search_input"
-          />
-          <button class="search_btn" @click="searchResult">搜索</button>
-					{{ subject }}
-        </div>
-        <div style="max-height: 286px; overflow-y: auto">
+        <div style="max-height: 286px;">
           <ul ref="optionul">
             <li
               v-for="(item, idx) in subject"
@@ -47,10 +36,9 @@
               @click="itemClick(item)"
               @mouseover="move($event, idx)"
               @mouseout="out($event)"
-              :class="item.name == currentName ? 'active' : ''"
+              :class="item == currentName ? 'active' : ''"
             >
-              <span class="li_left text_ellipsis">{{ item.code }}</span>
-              <span class="li_right text_ellipsis">{{ item.name }}</span>
+              <span class="li_right text_ellipsis">{{ item }}</span>
             </li>
           </ul>
         </div>
@@ -72,9 +60,6 @@
       <span class="label_title">
         {{ defaultLabelConfig.title }}
       </span>
-      <span v-show="isIcon" class="icon_tip"
-        >{{ defaultLabelConfig.iconTitle }}<span class="sanjiao"></span
-      ></span>
     </span>
   </div>
 </template>
@@ -82,21 +67,13 @@
 <script>
 import Clickoutside from "@/utils/clickoutside";
 export default {
-  name: "SelectPageInput",
+  name: "SimplePageSelect",
   components: {},
   directives: {
     //挂载指令
     Clickoutside,
   },
   props: {
-    searchFlag: {
-      type: Boolean,
-      default: false,
-    },
-    isDisabled: {
-      type: Boolean,
-      default: false,
-    },
     // 下拉菜单的数据
     subject: {
       type: Array,
@@ -104,22 +81,18 @@ export default {
         return [];
       },
     },
-    selectDefaultVal: {
+    selectionBoxDefaultValue: {
       type: String,
       default: "请选择",
     },
     selectHeight: {
-      default: 24,
+      default: 32,
     },
     currentName: {
       type: String,
       default: "",
     },
     paginationConfig: {
-      type: Object,
-      default: () => {},
-    },
-    inputConfig: {
       type: Object,
       default: () => {},
     },
@@ -133,16 +106,10 @@ export default {
       type: Object,
       default: () => {},
     },
-    isIcon: {
-      typeof: Boolean,
-      default: false,
-    },
   },
   data() {
     return {
       currentPage1: 1,
-      search_code: "",
-      search_name: "",
     };
   },
   computed: {
@@ -170,31 +137,25 @@ export default {
         this.$refs.triangle.classList.remove("rotate_triangle_container");
       }
     },
+
     // 点击了 头部的下拉菜单
     selectClick() {
       this.isShow();
       this.$emit("hideLoading");
       this.$refs.triangle.classList.add("rotate_triangle_container");
-      // console.log("window.event=",window.event);
-      this.search_code = "";
-      this.search_name = "";
-      this.searchResult();
-      let event = event || window.event;
+      let event = event || window.event
       this.optionWrapper.style.position = "fixed";
-      this.optionWrapper.style.left = event.screenX - 100 + "px";
-      this.optionWrapper.style.top = event.screenY - 75 + "px";
+      this.optionWrapper.style.left = event.screenX-100 + 'px';
+      this.optionWrapper.style.top = event.screenY-75 + 'px';
     },
     itemClick(item, idx) {
       this.isShow();
       this.$emit("changeSelect", item, idx);
-      this.search_code = "";
-      this.search_name = "";
     },
     move(event, idx) {
       for (let item of this.subjectList) {
         item.classList.remove("hover");
       }
-      // this.currentNum = idx;
       event.currentTarget.classList.add("hover");
     },
     out(event) {
@@ -205,18 +166,7 @@ export default {
       if (this.optionWrapper.style.display === "block") {
         this.optionWrapper.style.display = "none";
         this.$refs.triangle.classList.remove("rotate_triangle_container");
-        this.search_code = "";
-        this.search_name = "";
-        this.searchResult();
       }
-    },
-    // 点击搜索将搜索的结果传到父组件
-    searchResult() {
-      this.paginationConfig.currentPage = 1;
-      this.$emit("searchData", {
-        code: this.search_code,
-        name: this.search_name,
-      });
     },
     // 上一页
     prevPageClick(val) {
@@ -230,6 +180,7 @@ export default {
 };
 </script>
 <style  lang="scss" scoped>
+@import "./css/input.scss";
 ul,
 li {
   list-style: none;
@@ -238,6 +189,7 @@ li {
   position: relative;
   font-size: 14px;
   float: right;
+	/* overflow: hidden; */
 
   .select_wrap {
     width: 100%;
@@ -294,8 +246,7 @@ li {
     z-index: 1995;
     left: 0px;
     top: 40px;
-    width: 380px;
-    // background: #fff;
+    width: 180px;
     padding-top: 10px;
     background: #f5f7fa;
     border: 1px solid #e4e7ed;
@@ -321,38 +272,17 @@ li {
         line-height: 24px;
         margin-bottom: 2px;
         transition: 0.3s;
-
         background: #fff;
         cursor: pointer;
-        .li_left {
-          display: inline-block;
-          width: 80px;
-          border-right: solid 1px #666;
-          padding-left: 5px;
-        }
         .li_right {
           display: inline-block;
-          width: 266px;
-          padding-left: 5px;
+          width: 160px;
+          padding-left: 6px;
         }
       }
     }
   }
 }
-.search_input {
-  width: 140px;
-  height: 28px;
-  border: solid 1px #dcdfe6;
-}
-.search_btn {
-  width: 40px;
-  height: 28px;
-  background: #ccc;
-  color: #666;
-  vertical-align: middle;
-  margin-left: 16px;
-}
-
 ::v-deep .el-pagination .btn-prev,
 ::v-deep .el-pagination .btn-next {
   background-color: transparent;
@@ -360,35 +290,7 @@ li {
 ::v-deep .el-input__inner {
   height: 32px;
 }
-// 禁用状态
-.notClick {
-  cursor: not-allowed;
-  background-color: #f5f7fa;
-  border-color: #e4e7ed;
-  color: #c0c4cc;
-}
-.icon_tip {
-  position: absolute;
-  float: left;
-  top: -16px;
-  left: 10px;
-  padding: 0 5px;
-  background: #000000;
-  font-size: 12px;
-  height: 16px;
-  line-height: 16px;
-  color: #fff;
-  text-align: center;
-  .sanjiao {
-    position: absolute;
-    top: -14px;
-    left: -19px;
-    display: inline-block;
-    margin: 30px;
-    width: 0px;
-    height: 0px;
-    border: 6px solid;
-    border-color: #000 transparent transparent transparent;
-  }
+.el-pagination{
+  padding: 0 5px ;
 }
 </style>
