@@ -19,7 +19,7 @@
         v-model="value"
         placeholder="请输入"
         :disabled="isDisabled"
-        v-debounce="{ handler: inputChange, event: 'input', wait: 5000 }" 
+        v-debounce="{ handler: inputChange, event: 'input', wait: 5000 }"
       ></el-input>
     </div>
     <div v-show="isShowTip" class="xSelect_tip">{{ defaultTip }}</div>
