@@ -93,6 +93,10 @@ export default {
               title: "下拉菜单",
             },
             {
+              index: "icon",
+              title: "icon封装",
+            },
+            {
               index: "3-2",
               title: "三级菜单",
               subs: [

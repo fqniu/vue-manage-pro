@@ -13,6 +13,14 @@ export function goLoginPage() {
 }
 
 /**
+ * @param {string} path
+ * @returns {Boolean}
+ */
+ export function isExternal(path) {
+  return /^(https?:|mailto:|tel:)/.test(path)
+}
+
+/**
  * Parse the time to string
  * @param {(Object|string|number)} time
  * @param {string} cFormat

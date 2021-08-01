@@ -46,6 +46,8 @@ Object.keys(directives).forEach(key => {
   Vue.directive(key, directives[key])
 })
 
+// icon
+import '@/icons' 
 
 Vue.config.productionTip = false
 
