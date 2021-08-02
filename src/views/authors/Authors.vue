@@ -10,7 +10,7 @@
     <div class="container">
       <div class="container_left">
         <div class="plugins-tips">
-          如果该框架对你有帮助，那么可以请苦逼搬砖者和奶茶不？。
+          如果该框架对你有帮助，那么可以请苦逼搬砖者喝奶茶不？。
         </div>
         <div>
           <img src="./img/weixin.png" />

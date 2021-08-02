@@ -101,6 +101,10 @@ export default {
                   title: "表单联动",
                 },
                 {
+                  index: "upload",
+                  title: "上传组件",
+                },
+                {
                   index: "vueEditor",
                   title: "文本编辑器",
                 },

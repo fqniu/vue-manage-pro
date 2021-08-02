@@ -4,6 +4,10 @@ let conponentArr = [
     path: '/SelectPage',
     component: () => import('@/views/componentC/select/SelectPage.vue'),
     meta: { title: '下拉菜单' }
+  },  {
+    path: '/upload',
+    component: () => import('@/views/componentC/upload/UploadPage.vue'),
+    meta: { title: '上次文件' }
   },
   {
     path: '/formLink',
