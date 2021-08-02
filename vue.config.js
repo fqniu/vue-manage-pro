@@ -1,26 +1,45 @@
 var path = require('path')
 var webpack = require('webpack')
-function resolve (dir) {
-  return path.join(__dirname, dir)
+
+function resolve(dir) {
+	return path.join(__dirname, dir)
 }
 module.exports = {
-  chainWebpack: config => {
-    config.resolve.alias
-      // .set(key, value) // key,value自行定义，比如.set('@@', resolve('src/components'))
-      .set('@', resolve('src'))
-      .set('@components', resolve('src/components'))
-      .set('@assets', resolve('src/assets'))
-  },
-  configureWebpack: {
-    plugins: [
-      new webpack.ProvidePlugin({
-        $: 'jquery',
-        jquery: 'jquery',
-        'window.jQuery': 'jquery',
-        jQuery: 'jquery'
+	chainWebpack: config => {
+		config.resolve.alias
+			// .set(key, value) // key,value自行定义，比如.set('@@', resolve('src/components'))
+			.set('@', resolve('src'))
+			.set('@components', resolve('src/components'))
+			.set('@assets', resolve('src/assets'))
+
+    // set svg-sprite-loader
+		config.module
+    .rule('svg')
+    .exclude.add(resolve('src/icons'))
+    .end()
+
+    config.module
+      .rule('icons')
+      .test(/\.svg$/)
+      .include.add(resolve('src/icons'))
+      .end()
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader')
+      .options({
+        symbolId: 'icon-[name]'
       })
-    ]
-  },
+      .end()
+	},
+	configureWebpack: {
+		plugins: [
+			new webpack.ProvidePlugin({
+				$: 'jquery',
+				jquery: 'jquery',
+				'window.jQuery': 'jquery',
+				jQuery: 'jquery'
+			})
+		]
+	},
 	// // 服务器设置
 	// devServer: {
 	// 	port: 9999,

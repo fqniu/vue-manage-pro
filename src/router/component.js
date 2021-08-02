@@ -10,6 +10,11 @@ let conponentArr = [
     meta: { title: '上次文件' }
   },
   {
+    path: '/icon',
+    component: () => import('@/views/componentC/icon'),
+    meta: { title: 'icon封装' }
+  },
+  {
     path: '/formLink',
     component: () => import('@/views/componentC/formLink/FormLink.vue'),
     meta: { title: '表单联动' }
