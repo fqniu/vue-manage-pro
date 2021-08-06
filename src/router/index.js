@@ -48,6 +48,11 @@ const routes = [
         meta: { title: 'echarts的使用' }
       },
       {
+        path: '/echarts3',
+        component: () => import('@/views/echarts/Echarts3.vue'),
+        meta: { title: 'echarts的之世界地图' }
+      },
+      {
         path: '/zTree',
         component: () => import('@/views/zTree/ZTree.vue'),
         meta: { title: 'zTree的使用' }

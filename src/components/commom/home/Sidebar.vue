@@ -127,6 +127,11 @@ export default {
         },
         {
           icon: "el-icon-s-opportunity",
+          index: "echarts3",
+          title: "echarts的之世界地图",
+        },
+        {
+          icon: "el-icon-s-opportunity",
           index: "zTree",
           title: "zTree的使用",
         },
